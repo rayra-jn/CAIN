@@ -2,25 +2,24 @@ import { Stack } from "expo-router";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import { SessionProvider } from "./session";
 
 SplashScreen.preventAutoHideAsync();
 
-const isDev = __DEV__;
-
 export default function Layout() {
-  const [loaded, error] = useFonts({
-    VGA: isDev
-    ? require("../assets/fonts/VT323-Regular.ttf")
-    : require("../assets/fonts/PxPlus_IBM_VGA8.ttf"),
-  VT: require("../assets/fonts/VT323-Regular.ttf"),
+  const [loaded] = useFonts({
+    VGA: require("../assets/fonts/PxPlus_IBM_VGA8.ttf"),
   });
 
- useEffect(() => {
-    // garante que não fica preso
-    if (loaded || error) SplashScreen.hideAsync();
-  }, [loaded, error]);
+  useEffect(() => {
+    if (loaded) SplashScreen.hideAsync();
+  }, [loaded]);
 
-  if (!loaded && !error) return null;
+  if (!loaded) return null;
 
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return (
+    <SessionProvider>
+      <Stack screenOptions={{ headerShown: false }} />
+    </SessionProvider>
+  );
 }
