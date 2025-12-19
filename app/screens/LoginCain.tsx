@@ -13,7 +13,7 @@ import TerminalInput from "../../components/TerminalInput";
 
 import { router } from "expo-router";
 import { useCainBootSound } from "../../hooks/useCainSound";
-import { useTypewriter } from "../../hooks/useTypewriter";
+import { router } from "expo-router";
 import { getBySecurityCode } from "../../src/data/identities";
 
 type Status = "IDLE" | "VALIDATING" | "DENIED" | "GRANTED";
