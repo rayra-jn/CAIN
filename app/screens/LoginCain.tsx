@@ -13,6 +13,8 @@ import TerminalInput from "../../components/TerminalInput";
 
 import { useTypewriter } from "../../hooks/useTypewriter";
 import { useCainBootSound } from "../../hooks/useCainSound";
+import { router } from "expo-router";
+import { getBySecurityCode } from "../../src/data/identities";
 
 type Status = "IDLE" | "VALIDATING" | "DENIED" | "GRANTED";
 
@@ -43,30 +45,18 @@ export default function LoginCain({
   }, [status]);
 
   const submit = async () => {
-    if (!securityCode.trim() || !password.trim()) {
-      setStatus("DENIED");
-      return;
-    }
+    const identity = getBySecurityCode(securityCode);
 
-    setStatus("VALIDATING");
-    await wait(900);
+if (!identity) {
+  setStatus("DENIED");
+  return;
+}
 
-    const validCodes = new Set(["KT2-W51-PRX", "CA1-N01-7GM"]);
-    if (!validCodes.has(securityCode.trim().toUpperCase())) {
-      setStatus("DENIED");
-      return;
-    }
+setStatus("GRANTED");
+await wait(500);
 
-    setStatus("GRANTED");
-    await wait(500);
-
-    onLoggedIn({
-      user: { role: "PLAYER" },
-      scientist: {
-        name: "Kruger Bloodcroft",
-        securityCode: securityCode.trim().toUpperCase(),
-      },
-    });
+// vai pra lista de chats passando quem é
+router.replace({ pathname: "/chat/index", params: { as: identity.id } });
   };
 
   const disabled = status === "VALIDATING";
