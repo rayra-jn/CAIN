@@ -69,7 +69,8 @@ router.replace(
       <CainBackground />
       <CainNoise />
 
-      <View style={styles.center}>
+      <View style={styles.contentWrapper}>
+        <View style={styles.center}></View>
         <Text style={styles.title}>C.A.I.N</Text>
 
         <Text style={styles.subtitle}>
@@ -161,8 +162,8 @@ const styles = StyleSheet.create({
 
   center: {
     width: "100%",
-    maxWidth: 520,
-    paddingHorizontal: 24,
+    maxWidth: 360,
+    paddingHorizontal: 20,
     alignItems: "center",
   },
 
@@ -190,7 +191,7 @@ const styles = StyleSheet.create({
 
   system: {
     fontFamily: "PressStart2P",
-    fontSize: 14,
+    fontSize: 12,
     color: "#1f8f5a",
     marginBottom: 18,
   },
@@ -263,5 +264,16 @@ const styles = StyleSheet.create({
     fontSize: 9,
     color: "#ff4d4d",
     textAlign: "center",
+  },
+
+  contentWrapper: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

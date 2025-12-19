@@ -9,27 +9,26 @@ export default function CainNoise() {
   useEffect(() => {
     const flickerAnim = Animated.loop(
       Animated.sequence([
-        Animated.timing(flicker, { toValue: 0.10, duration: 90, useNativeDriver: true }),
-        Animated.timing(flicker, { toValue: 0.05, duration: 120, useNativeDriver: true }),
-        Animated.timing(flicker, { toValue: 0.12, duration: 70, useNativeDriver: true }),
-        Animated.timing(flicker, { toValue: 0.055, duration: 160, useNativeDriver: true }),
+        Animated.timing(flicker, { toValue: 0.09, duration: 120, useNativeDriver: true }),
+        Animated.timing(flicker, { toValue: 0.055, duration: 180, useNativeDriver: true }),
+        Animated.timing(flicker, { toValue: 0.11, duration: 90, useNativeDriver: true }),
+        Animated.timing(flicker, { toValue: 0.06, duration: 200, useNativeDriver: true }),
       ])
     );
 
     const driftAnim = Animated.loop(
       Animated.timing(drift, {
         toValue: 1,
-        duration: 2800,
+        duration: 6000,              // 👈 MAIS lento
         easing: Easing.linear,
         useNativeDriver: true,
       })
     );
 
-    // “scanline sweep” bem sutil
     const scanAnim = Animated.loop(
       Animated.timing(scan, {
         toValue: 1,
-        duration: 2600,
+        duration: 3200,
         easing: Easing.linear,
         useNativeDriver: true,
       })
@@ -46,55 +45,55 @@ export default function CainNoise() {
     };
   }, [flicker, drift, scan]);
 
+  // 🔹 Drift MUITO sutil (não entorta mais)
   const translateY = drift.interpolate({
     inputRange: [0, 1],
-    outputRange: [0, -24],
+    outputRange: [-6, 6],
   });
 
   const translateX = drift.interpolate({
     inputRange: [0, 1],
-    outputRange: [0, 14],
+    outputRange: [-6, 6],
   });
 
   const scanTranslateY = scan.interpolate({
     inputRange: [0, 1],
-    outputRange: [-80, 820], // varre a tela (valor alto é ok)
+    outputRange: [-120, 900],
   });
 
   const scanOpacity = flicker.interpolate({
     inputRange: [0.05, 0.12],
-    outputRange: [0.08, 0.16],
+    outputRange: [0.05, 0.12],
   });
 
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-      {/* 1) Grain (repeat) — precisa ser um PNG pequeno e bem aleatório */}
+      {/* 1) Grain (noise) — FULLSCREEN */}
       <Animated.Image
         source={require("../assets/images/noise.png")}
-        
+        resizeMode="repeat"
         style={[
-          styles.layer,
+          StyleSheet.absoluteFillObject,
           {
             opacity: flicker,
-            transform: [{ translateY }, { translateX }, { scale: 1.8 }],
+            transform: [{ translateX }, { translateY }],
           },
         ]}
       />
 
-      {/* 2) Scanlines (cover) — NÃO repetir em blocos */}
+      {/* 2) Scanlines — FULLSCREEN (corrigido) */}
       <Animated.Image
         source={require("../assets/images/scanlines.png")}
         resizeMode="cover"
         style={[
-          styles.layer,
+          StyleSheet.absoluteFillObject,
           {
-            opacity: 0.10,
-            transform: [{ scale: 1.02 }],
+            opacity: 0.08,
           },
         ]}
       />
 
-      {/* 3) Sweep bem sutil (faixa passando) */}
+      {/* 3) Sweep (faixa CRT) */}
       <Animated.View
         style={[
           styles.sweep,
@@ -109,16 +108,11 @@ export default function CainNoise() {
 }
 
 const styles = StyleSheet.create({
-  layer: {
-    ...StyleSheet.absoluteFillObject,
-  },
-
-  // faixa de “refresh” tipo CRT, bem discreta
   sweep: {
     position: "absolute",
     left: 0,
     right: 0,
     height: 90,
-    backgroundColor: "rgba(0,255,136,0.10)",
+    backgroundColor: "rgba(0,255,136,0.08)",
   },
 });
