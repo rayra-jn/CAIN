@@ -1,6 +1,5 @@
-import React from "react";
 import { Tabs } from "expo-router";
-import { Text } from "react-native";
+import React from "react";
 
 export default function TabsLayout() {
   return (
@@ -16,7 +15,7 @@ export default function TabsLayout() {
         tabBarActiveTintColor: "#00ff88",
         tabBarInactiveTintColor: "#1f8f5a",
         tabBarLabelStyle: {
-          fontFamily: "VGA",
+          fontFamily: "PressStart2P",
           fontSize: 10,
           letterSpacing: 2,
         },
