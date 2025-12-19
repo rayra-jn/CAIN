@@ -1,6 +1,6 @@
+import { router, useLocalSearchParams } from "expo-router";
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, FlatList, Animated } from "react-native";
-import { useLocalSearchParams, router } from "expo-router";
+import { Animated, FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import CainBackground from "../components/CainBackground";
 
 type Params = { role?: string; name?: string };
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   headerTitle: {
-    fontFamily: "VGA",
+    fontFamily: "PressStart2P",
     color: "#00ff88",
     fontSize: 18,
     letterSpacing: 2,
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,255,136,0.03)",
   },
   headerBtnText: {
-    fontFamily: "VGA",
+    fontFamily: "PressStart2P",
     color: "#00ff88",
     fontSize: 10,
     letterSpacing: 2,
@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
 
   identityRow: { marginTop: 10, flexDirection: "row", alignItems: "center", gap: 8 },
   onlineDot: { width: 8, height: 8, borderRadius: 8, backgroundColor: "#00ff88" },
-  identityText: { fontFamily: "VGA", color: "#6aff9c", fontSize: 10, letterSpacing: 1, opacity: 0.95 },
+  identityText: { fontFamily: "PressStart2P", color: "#6aff9c", fontSize: 10, letterSpacing: 1, opacity: 0.95 },
 
   tabs: { marginTop: 12, flexDirection: "row", alignItems: "center", gap: 8 },
   tabBtn: {
@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,255,136,0.02)",
   },
   tabBtnActive: { borderColor: "#00ff88", backgroundColor: "rgba(0,255,136,0.06)" },
-  tabText: { fontFamily: "VGA", color: "#2fa66a", fontSize: 10, letterSpacing: 2 },
+  tabText: { fontFamily: "PressStart2P", color: "#2fa66a", fontSize: 10, letterSpacing: 2 },
   tabTextActive: { color: "#00ff88" },
 
   newBtn: {
@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     backgroundColor: "rgba(0,255,136,0.03)",
   },
-  newBtnText: { fontFamily: "VGA", color: "#00ff88", fontSize: 10, letterSpacing: 2 },
+  newBtnText: { fontFamily: "PressStart2P", color: "#00ff88", fontSize: 10, letterSpacing: 2 },
 
   sep: { marginTop: 12, height: 1, backgroundColor: "rgba(0,255,136,0.25)" },
 
@@ -233,17 +233,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "rgba(0,255,136,0.03)",
   },
-  avatarText: { fontFamily: "VGA", color: "#00ff88", fontSize: 14, letterSpacing: 1 },
+  avatarText: { fontFamily: "PressStart2P", color: "#00ff88", fontSize: 14, letterSpacing: 1 },
 
   rowText: { flex: 1 },
   rowTitleLine: { flexDirection: "row", alignItems: "center", gap: 8 },
-  rowTitle: { fontFamily: "VGA", color: "#00ff88", fontSize: 12, letterSpacing: 2, flex: 1 },
+  rowTitle: { fontFamily: "PressStart2P", color: "#00ff88", fontSize: 12, letterSpacing: 2, flex: 1 },
   onlineMini: { width: 6, height: 6, borderRadius: 6, backgroundColor: "#00ff88" },
 
-  rowLast: { marginTop: 6, fontFamily: "VGA", color: "#2fa66a", fontSize: 10, letterSpacing: 1, opacity: 0.95 },
+  rowLast: { marginTop: 6, fontFamily: "PressStart2P", color: "#2fa66a", fontSize: 10, letterSpacing: 1, opacity: 0.95 },
 
   rowRight: { alignItems: "flex-end", gap: 8, paddingLeft: 10 },
-  time: { fontFamily: "VGA", color: "#6aff9c", fontSize: 9, letterSpacing: 1, opacity: 0.8 },
+  time: { fontFamily: "PressStart2P", color: "#6aff9c", fontSize: 9, letterSpacing: 1, opacity: 0.8 },
   badge: {
     minWidth: 20,
     height: 18,
@@ -254,5 +254,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "rgba(0,255,136,0.06)",
   },
-  badgeText: { fontFamily: "VGA", color: "#00ff88", fontSize: 9, letterSpacing: 1 },
+  badgeText: { fontFamily: "PressStart2P", color: "#00ff88", fontSize: 9, letterSpacing: 1 },
 });

@@ -1,17 +1,17 @@
 import React, { useMemo, useState } from "react";
 import {
-  View,
+  Platform,
+  StyleSheet,
   Text,
   TouchableOpacity,
-  StyleSheet,
-  Platform,
+  View,
 } from "react-native";
 
 import CainBackground from "../../components/CainBackground";
 import CainNoise from "../../components/CainNoise";
 import TerminalInput from "../../components/TerminalInput";
 
-import { useTypewriter } from "../../hooks/useTypewriter";
+import { router } from "expo-router";
 import { useCainBootSound } from "../../hooks/useCainSound";
 import { router } from "expo-router";
 import { getBySecurityCode } from "../../src/data/identities";
@@ -56,7 +56,9 @@ setStatus("GRANTED");
 await wait(500);
 
 // vai pra lista de chats passando quem é
-router.replace({ pathname: "/chat/index", params: { as: identity.id } });
+router.replace(
+  { pathname: "/chat", 
+    params: { as: identity.id } });
   };
 
   const disabled = status === "VALIDATING";
@@ -165,14 +167,14 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontFamily: "VGA",
+    fontFamily: "PressStart2P",
     fontSize: Platform.OS === "web" ? 44 : 40,
     color: "#00ff88",
     marginBottom: 6,
   },
 
   subtitle: {
-    fontFamily: "VGA",
+    fontFamily: "PressStart2P",
     fontSize: 14,
     color: "#2fa66a",
     textAlign: "center",
@@ -180,21 +182,21 @@ const styles = StyleSheet.create({
   },
 
   episode: {
-    fontFamily: "VGA",
-    fontSize: 12,
+    fontFamily: "PressStart2P",
+    fontSize: 10,
     color: "#2fa66a",
     marginBottom: 14,
   },
 
   system: {
-    fontFamily: "VT",
+    fontFamily: "PressStart2P",
     fontSize: 14,
     color: "#1f8f5a",
     marginBottom: 18,
   },
 
   cursor: {
-    fontFamily: "VGA",
+    fontFamily: "PressStart2P",
     color: "#00ff88",
   },
 
@@ -208,7 +210,7 @@ const styles = StyleSheet.create({
   },
 
   label: {
-    fontFamily: "VGA",
+    fontFamily: "PressStart2P",
     fontSize: 12,
     color: "#7cffb0",
     marginBottom: 6,
@@ -224,7 +226,7 @@ const styles = StyleSheet.create({
   },
 
   eyeText: {
-    fontFamily: "VGA",
+    fontFamily: "PressStart2P",
     fontSize: 10,
     color: "#00ff88",
   },
@@ -242,14 +244,14 @@ const styles = StyleSheet.create({
   },
 
   buttonText: {
-    fontFamily: "VGA",
+    fontFamily: "PressStart2P",
     fontSize: 12,
     color: "#00ff88",
   },
 
   footer: {
     marginTop: 14,
-    fontFamily: "VGA",
+    fontFamily: "PressStart2P",
     fontSize: 12,
     color: "#00ff88",
     textAlign: "center",
@@ -257,7 +259,7 @@ const styles = StyleSheet.create({
 
   error: {
     marginTop: 14,
-    fontFamily: "VGA",
+    fontFamily: "PressStart2P",
     fontSize: 9,
     color: "#ff4d4d",
     textAlign: "center",
